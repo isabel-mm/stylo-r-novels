@@ -1,4 +1,4 @@
-# corpus metadata
+# metadata
 
 | id                      | author               | author-gender | author-nationality | period     | title                           | year |
 | ----------------------- | -------------------- | ------------- | ------------------ | ---------- | ------------------------------- | ---- |
