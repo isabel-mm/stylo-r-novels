@@ -1,4 +1,4 @@
-# Estilometría Computacional en Humanidades Digitales 💻​
+# Estilometría computacional en Humanidades Digitales 💻​
 Este repositorio contiene los datos y los scripts utilizados en el trabajo "Estilometría computacional en las humanidades digitales: una propuesta metodológica para el análisis estilométrico de novelas anglofonas realistas y modernistas".
 
 ## 📋 Descripción del proyecto
