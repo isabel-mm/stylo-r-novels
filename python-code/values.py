@@ -1,29 +1,30 @@
-# Este código imprime una tabla con el número de tokens y número de types del corpus. También calcula el type-token ratio.
-
 import os
 import nltk
-from nltk.tokenize import word_tokenize
-from nltk.probability import FreqDist
+import pandas as pd
 
-# Pega aquí el directorio donde se encuentra tu corpus
-corpus_directory = 'C:/tudirectorio'
+# Ruta del directorio que contiene los archivos de texto
+corpus_directory = 'directorio'
 
-# Función para contar tokens, tipos y calcular el type-token ratio
-def count_tokens_types_ttr(text):
-    tokens = word_tokenize(text, language='english')
-    types = set(tokens)
-    ttr = len(types) / len(tokens)
-    return len(tokens), len(types), ttr
+# Inicializar el tokenizador de NLTK para dividir el texto en palabras
+tokenizer = nltk.RegexpTokenizer(r'\b\w+\b')
 
-# Bucle para iterar sobre los archivos en el directorio
+# Crear listas para almacenar los resultados por archivo
+results_list = []
+
+# Recorrer los archivos en el directorio
 for filename in os.listdir(corpus_directory):
     if filename.endswith('.txt'):
-        with open(os.path.join(corpus_directory, filename), 'r', encoding='utf-8') as file:
-            text = file.read().lower()
-            tokens, types, ttr = count_tokens_types_ttr(text)
-            ttr_percentage = ttr * 100  # Para calcular el type-token ratio en porcentaje
-            print(f'Archivo: {filename}')
-            print(f'Tokens: {tokens}')
-            print(f'Types: {types}')
-            print(f'Type-Token Ratio (TTR): {ttr_percentage:.2f}%')
-            print('----------------------------------------')
+        file_path = os.path.join(corpus_directory, filename)
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text = file.read()
+            tokens = tokenizer.tokenize(text.lower())  # Tokenizar y convertir a minúsculas
+            num_tokens = len(tokens)
+            num_types = len(set(tokens))
+            ttr_percentage = (num_types / num_tokens) * 100
+            results_list.append([filename, num_tokens, num_types, ttr_percentage])
+
+# Crear una tabla con los resultados
+results_df = pd.DataFrame(results_list, columns=['Archivo', 'Tokens', 'Types', 'Type-Token Ratio (%)'])
+
+# Imprimir la tabla de resultados
+print(results_df)
