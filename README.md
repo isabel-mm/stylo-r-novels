@@ -8,7 +8,7 @@ Este proyecto se centra en el análisis estilométrico de novelas anglofonas rea
 ## Contenido del repositorio ##
 - Corpus de novelas anglófonas: En las carpetas llamadas **corpus**, encontrarás una colección de novelas en inglés que se utilizarán como base de datos para el análisis estilométrico. El corpus se encuentra en formato de texto plano (.txt) con la codificación UTF-8 y el ID autor_título.txt que stylo() requiere. También está la versión con el corpus lematizado.
   
-- Datos adicionales: En la carpeta **data** ncontrarás dos archivos CSV que contienen información sobre el corpus. corpus_details.csv proporciona detalles sobre cada obra, como el autor, el título y el año de publicación. corpus_statistics.csv contiene estadísticas importantes del corpus, como el número de tokens, tipos y la relación tipo-token.
+- Datos adicionales: En la carpeta **data** encontrarás dos archivos que contienen información sobre el corpus. **metadata.md** proporciona detalles sobre cada obra, como el autor, el título y el año de publicación. **values.md** contiene estadísticas importantes del corpus, como el número de tokens, tipos y la relación type-token.
 
 - Código en Python para el procesamiento del corpus: La carpeta **python-code** contiene scripts en Python para preprocesar y analizar el corpus. Estos scripts incluyen la tokenización, el cálculo de tipos y tokens, y la generación de estadísticas básicas sobre las novelas.
 
