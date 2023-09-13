@@ -1,7 +1,7 @@
 import os
 import spacy
 
-# Cargar el modelo de spaCy para inglés
+# Cargar el modelo de spaCy para inglés (o la lengua del corpus)
 sp = spacy.load('en_core_web_sm')
 
 # Pega aquí el directorio con las novelas originales y el directorio donde se guardarán las novelas lematizadas
