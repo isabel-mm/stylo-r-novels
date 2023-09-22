@@ -1,30 +1,31 @@
 import os
 import nltk
-import pandas as pd
+from nltk.tokenize import word_tokenize
+from collections import Counter
 
-# Ruta del directorio que contiene los archivos de texto
-corpus_directory = 'directorio'
+# Directorio donde se aloja tu corpus
+directorio = 'tudirectorio'
 
-# Inicializar el tokenizador de NLTK para dividir el texto en palabras
-tokenizer = nltk.RegexpTokenizer(r'\b\w+\b')
+# Lista para almacenar los resultados de cada texto
+resultados = []
 
-# Crear listas para almacenar los resultados por archivo
-results_list = []
-
-# Recorrer los archivos en el directorio
-for filename in os.listdir(corpus_directory):
-    if filename.endswith('.txt'):
-        file_path = os.path.join(corpus_directory, filename)
-        with open(file_path, 'r', encoding='utf-8') as file:
+# Recorre los archivos en el directorio
+for filename in os.listdir(directorio):
+    if filename.endswith('.txt'):  # Para solo procesar archivos de texto
+        with open(os.path.join(directorio, filename), 'r', encoding='utf-8') as file:
             text = file.read()
-            tokens = tokenizer.tokenize(text.lower())  # Tokenizar y convertir a minúsculas
-            num_tokens = len(tokens)
-            num_types = len(set(tokens))
-            ttr_percentage = (num_types / num_tokens) * 100
-            results_list.append([filename, num_tokens, num_types, ttr_percentage])
+            tokens = word_tokenize(text)
+            total_tokens = len(tokens)
+            types = set(tokens)
+            total_types = len(types)
+            ttr = (total_types / total_tokens) * 100  # TTR como porcentaje
 
-# Crear una tabla con los resultados
-results_df = pd.DataFrame(results_list, columns=['Archivo', 'Tokens', 'Types', 'Type-Token Ratio (%)'])
+            # Agrega los resultados a la lista
+            resultados.append([filename, total_tokens, total_types, f"{ttr:.2f}%"])
 
-# Imprimir la tabla de resultados
-print(results_df)
+# Imprime la tabla en formato Markdown
+print("| Archivo | Total de Tokens | Total de Types | Type-Token Ratio (TTR) |")
+print("|---------|-----------------|---------------|-------------------------|")
+
+for resultado in resultados:
+    print(f"| {resultado[0]} | {resultado[1]} | {resultado[2]} | {resultado[3]} |")
